@@ -2,9 +2,8 @@
 
 namespace CSharpApiCourse.Models.Dto
 {
-    public class HotelDTO
+    public class HotelCreateDTO
     {
-        public int Id { get; set; }
         [Required]
         [MaxLength(20)]
         public string Name { get; set; }

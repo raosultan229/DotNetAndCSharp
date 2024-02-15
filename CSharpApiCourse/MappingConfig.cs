@@ -14,6 +14,10 @@ namespace CSharpApiCourse
             CreateMap<Hotel, HotelUpdateDTO>().ReverseMap();
             CreateMap<Hotel, HotelCreateDTO>().ReverseMap( );
 
+            CreateMap<HotelNumber, HotelNumberDTO>().ReverseMap();
+            CreateMap<HotelNumber, HotelNumberUpdateDTO>().ReverseMap();
+            CreateMap<HotelNumber, HotelNumberCreateDTO>().ReverseMap();
+
         }
     }
 }

@@ -4,6 +4,7 @@ using CSharpApiCourse.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSharpApiCourse.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240202093111_RemovedColumnFromHotelNumber")]
+    partial class RemovedColumnFromHotelNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +84,7 @@ namespace CSharpApiCourse.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 2, 15, 15, 52, 51, 569, DateTimeKind.Local).AddTicks(8151),
+                            CreatedDate = new DateTime(2024, 2, 2, 14, 31, 10, 376, DateTimeKind.Local).AddTicks(7822),
                             Description = "PC Hotels is a hospitality company which operates up-scale hotels and resorts in East Africa, Southern Africa and South Asia. As of 2023, Serena comprises a collection of 34 luxury resorts, safari lodges, and hotels, which are located in East Africa and Central and South Asia",
                             ImageUrl = "https://media.istockphoto.com/id/1152537185/photo/hacker-working-on-laptop-in-the-dark.jpg?s=2048x2048&w=is&k=20&c=KzdFLKatp_2rsWnsEZRrw1Qkv-shfRTXTEmuX7QUB0I=",
                             IsAvailable = true,
@@ -94,7 +97,7 @@ namespace CSharpApiCourse.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 2, 15, 15, 52, 51, 569, DateTimeKind.Local).AddTicks(8176),
+                            CreatedDate = new DateTime(2024, 2, 2, 14, 31, 10, 376, DateTimeKind.Local).AddTicks(7841),
                             Description = "Nova Hotels is a hospitality company which operates up-scale hotels and resorts in East Africa, Southern Africa and South Asia. As of 2023, Serena comprises a collection of 34 luxury resorts, safari lodges, and hotels, which are located in East Africa and Central and South Asia",
                             ImageUrl = "https://media.istockphoto.com/id/1152537185/photo/hacker-working-on-laptop-in-the-dark.jpg?s=2048x2048&w=is&k=20&c=KzdFLKatp_2rsWnsEZRrw1Qkv-shfRTXTEmuX7QUB0I=",
                             IsAvailable = false,
@@ -107,7 +110,7 @@ namespace CSharpApiCourse.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 2, 15, 15, 52, 51, 569, DateTimeKind.Local).AddTicks(8182),
+                            CreatedDate = new DateTime(2024, 2, 2, 14, 31, 10, 376, DateTimeKind.Local).AddTicks(7846),
                             Description = "Serena Hotels is a hospitality company which operates up-scale hotels and resorts in East Africa, Southern Africa and South Asia. As of 2023, Serena comprises a collection of 34 luxury resorts, safari lodges, and hotels, which are located in East Africa and Central and South Asia",
                             ImageUrl = "https://media.istockphoto.com/id/1152537185/photo/hacker-working-on-laptop-in-the-dark.jpg?s=2048x2048&w=is&k=20&c=KzdFLKatp_2rsWnsEZRrw1Qkv-shfRTXTEmuX7QUB0I=",
                             IsAvailable = true,
@@ -120,7 +123,7 @@ namespace CSharpApiCourse.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 2, 15, 15, 52, 51, 569, DateTimeKind.Local).AddTicks(8187),
+                            CreatedDate = new DateTime(2024, 2, 2, 14, 31, 10, 376, DateTimeKind.Local).AddTicks(7850),
                             Description = "Serena Hotels is a hospitality company which operates up-scale hotels and resorts in East Africa, Southern Africa and South Asia. As of 2023, Serena comprises a collection of 34 luxury resorts, safari lodges, and hotels, which are located in East Africa and Central and South Asia",
                             ImageUrl = "https://media.istockphoto.com/id/1152537185/photo/hacker-working-on-laptop-in-the-dark.jpg?s=2048x2048&w=is&k=20&c=KzdFLKatp_2rsWnsEZRrw1Qkv-shfRTXTEmuX7QUB0I=",
                             IsAvailable = false,
@@ -150,31 +153,6 @@ namespace CSharpApiCourse.Migrations
                     b.HasKey("HotelNo");
 
                     b.ToTable("HotelNumber");
-                });
-
-            modelBuilder.Entity("CSharpApiCourse.Models.User", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

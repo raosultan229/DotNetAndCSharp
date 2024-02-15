@@ -9,6 +9,9 @@ namespace CSharpApiCourse.Data
         {
         }
         public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<HotelNumber> HotelNumber { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Hotel>().HasData(

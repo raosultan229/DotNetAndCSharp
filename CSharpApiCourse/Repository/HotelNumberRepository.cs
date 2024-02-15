@@ -7,17 +7,18 @@ using System.Linq.Expressions;
 
 namespace CSharpApiCourse.Repository
 {
-    public class HotelRepository : Repository<Hotel>, IHotelRepository
+    public class HotelNumberRepository : Repository<HotelNumber>, IHotelNumberRepository
     {
         private readonly ApplicationDbContext _db;
-        public HotelRepository(ApplicationDbContext db) : base(db)
+        public HotelNumberRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public async Task<Hotel> UpdateAsync(Hotel entity)
+        public async Task<HotelNumber> UpdateAsync(HotelNumber entity)
         {
-            _db.Hotels.Update(entity);
+            //entity.UpdatedDate = DateTime.Now;
+            _db.HotelNumber.Update(entity);
             await _db.SaveChangesAsync();
             return entity;
         }

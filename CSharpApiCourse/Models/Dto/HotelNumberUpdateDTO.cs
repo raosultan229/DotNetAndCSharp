@@ -8,6 +8,5 @@ namespace CSharpApiCourse.Models.Dto
         public int HotelNo { get; set; }
         public string AdditionalDetails { get; set; }
 
-
     }
 }

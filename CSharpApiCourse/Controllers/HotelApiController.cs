@@ -27,10 +27,6 @@ namespace CSharpApiCourse.Controllers
         //Logging--Errors
         private readonly ILogger<HotelApiController> _logger;
         public ILogger<HotelApiController> Logger { get; }
-        //public HotelApiController(ILogger<HotelApiController> logger)
-        //{
-        //    _logger = logger;
-        //}
 
         //GetAll
         [HttpGet]
@@ -106,25 +102,9 @@ namespace CSharpApiCourse.Controllers
                 {
                     return BadRequest(createDTO);
                 }
-                //if (hotelDTO.Id > 0)
-                //{
-                //    return StatusCode(StatusCodes.Status500InternalServerError);
-                //}
-                //hotelDTO.Id = HotelStore.hotelList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
                 Hotel model = _mapper.Map<Hotel>(createDTO);
-                //Hotel model = new()
-                //{
-                //    Name = hotelDTO.Name,
-                //    Description = hotelDTO.Description,
-                //    Occupancy = hotelDTO.Occupancy,
-                //    Rooms = hotelDTO.Rooms,
-                //    IsAvailable = hotelDTO.IsAvailable,
-                //    Rate = hotelDTO.Rate,
-                //    ImageUrl = hotelDTO.ImageUrl,
-                //};
                 await _dbHotel.CreateAsync(model);
 
-                //HotelStore.hotelList.Add(hotelDTO);
                 _response.Result = _mapper.Map<HotelDTO>(model);
                 _response.IsSuccess = true;
                 _response.StatusCode = HttpStatusCode.Created;
@@ -150,7 +130,7 @@ namespace CSharpApiCourse.Controllers
             try
             {
 
-                if (id == 0)
+                if (id == 0) 
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     return BadRequest(_response);
@@ -190,22 +170,6 @@ namespace CSharpApiCourse.Controllers
                     return BadRequest();
                 }
                 Hotel model = _mapper.Map<Hotel>(updateDTO);
-                //var hotell = HotelStore.hotelList.FirstOrDefault(u => u.Id == id);
-                //hotell.Name = hotelDTO.Name;
-                //hotell.Rooms = hotelDTO.Rooms;
-                //hotell.Description = hotelDTO.Description; 
-                //hotell.IsAvailable = hotelDTO.IsAvailable;
-                //Hotel model = new()
-                //{
-                //    Id = hotelDTO.Id,
-                //    Name = hotelDTO.Name,
-                //    Description = hotelDTO.Description,
-                //    Occupancy = hotelDTO.Occupancy,
-                //    Rooms = hotelDTO.Rooms,
-                //    IsAvailable = hotelDTO.IsAvailable,
-                //    Rate = hotelDTO.Rate,
-                //    ImageUrl = hotelDTO.ImageUrl,
-                //};
                 await _dbHotel.UpdateAsync(model);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
@@ -218,58 +182,29 @@ namespace CSharpApiCourse.Controllers
             }
             return _response;
         }
-
+       
         //UpdateById
         [HttpPatch("{id:int}", Name = "UpdateSingleHotel")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
         public async Task<ActionResult<APIResponse>> UpdateSingleHotel(int id, JsonPatchDocument<HotelUpdateDTO> patchDTO)
         {
             try
             {
-                if (id == 0 || patchDTO == null)
+                if (id == 0)
                 {
                     return BadRequest();
                 }
                 var hotell = await _dbHotel.GetHotelAsync(u => u.Id == id, tracked: false);
-
                 HotelUpdateDTO hotelDTO = _mapper.Map<HotelUpdateDTO>(hotell);
-                //HotelUpdateDTO hotelDTO = new()
-                //{
-                //    Id = hotell.Id,
-                //    Name = hotell.Name,
-                //    Description = hotell.Description,
-                //    Occupancy = hotell.Occupancy,
-                //    Rooms = hotell.Rooms,
-                //    IsAvailable = hotell.IsAvailable,
-                //    Rate = hotell.Rate,
-                //    ImageUrl = hotell.ImageUrl,
-                //};
-
                 if (hotell == null)
                 {
                     return BadRequest();
                 }
 
                 patchDTO.ApplyTo(hotelDTO, ModelState);
-
                 Hotel model = _mapper.Map<Hotel>(hotelDTO);
-
-                //Hotel model = new()
-                //{
-                //    Id = hotelDTO.Id,
-                //    Name = hotelDTO.Name,
-                //    Description = hotelDTO.Description,
-                //    Occupancy = hotelDTO.Occupancy,
-                //    Rooms = hotelDTO.Rooms,
-                //    IsAvailable = hotelDTO.IsAvailable,
-                //    Rate = hotelDTO.Rate,
-                //    ImageUrl = hotelDTO.ImageUrl,
-                //};
-
                 await _dbHotel.UpdateAsync(model);
-
                 if (!ModelState.IsValid)
                 {
                     return BadRequest();
@@ -284,6 +219,7 @@ namespace CSharpApiCourse.Controllers
                 _response.ErrorMessages = new List<string> { ex.ToString() };
             }
             return _response;
+            
         }
     }
 }

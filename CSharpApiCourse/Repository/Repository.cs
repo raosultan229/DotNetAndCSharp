@@ -9,6 +9,7 @@ namespace CSharpApiCourse.Repository
     {
         private readonly ApplicationDbContext _db;
         internal DbSet<T> dbSet;
+        internal DbSet<T> dbSett;
         public Repository(ApplicationDbContext db)
         {
             _db = db;
